@@ -284,7 +284,7 @@ document["get_ver_and_kw"].bind("click", get_ver_and_kw)
 &lt;p&gt;(三) 上課出席與表現 (各學員根據實際內容舉證自評成績 * 老師認可百分比) (30%)&lt;/p&gt;
 &lt;h2&gt;網際內容管理課程規劃&lt;/h2&gt;
 &lt;p&gt;2017 WCM 機械設計工程系網際內容管理 (五) 13:20-16:10 各週上課日期:&lt;/p&gt;
-&lt;p&gt;&lt;span style="background-color: #ffff00"&gt;w1&lt;/span&gt;-2/24 - 請每人準備一個隨身碟, &lt;span style="background-color: #55ff55"&gt;&lt;a href="http://service.mde.tw/public/tiny2017_40MB.7z"&gt;下載&lt;/a&gt;&lt;/span&gt;可攜程式系統 (40MB) (或從倉儲中&lt;span style="background-color: #55ff55"&gt;&lt;a href="./../data/tiny2017.7z"&gt;下載&lt;/a&gt;&lt;/span&gt;). 複習如何在單機環境與網際環境中執行基本的 Python3 程式.&lt;/p&gt;
+&lt;p&gt;&lt;span style="background-color: #ffff00"&gt;w1&lt;/span&gt;-2/24 - 請每人準備一個隨身碟, &lt;span style="background-color: #55ff55"&gt;&lt;a href="http://service.mde.tw/public/tiny2017_500MB.7z"&gt;下載&lt;/a&gt;&lt;/span&gt;可攜程式系統 (500MB). 複習如何在單機環境與網際環境中執行基本的 Python3 程式.&lt;/p&gt;
 &lt;p&gt;w2-3/3 - CMSimfly 網際內容管理程式開發&lt;/p&gt;
 &lt;p&gt;w3-3/10 - CMSimfly 網際內容管理程式開發&lt;/p&gt;
 &lt;p&gt;w4-3/17 - CMSimfly 網際內容管理程式開發&lt;/p&gt;
