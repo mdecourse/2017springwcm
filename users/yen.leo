@@ -51,10 +51,11 @@
 </v>
 </v>
 <v t="yen.20170108171733.71" a="E"><vh>@path content</vh>
-<v t="yen.20170108171733.72"><vh>@clean 20170108.md</vh>
-<v t="yen.20170108212459.1"><vh>ex1 - for 迴圈</vh></v>
-<v t="yen.20170108212856.1"><vh>ex2 - input 與單位換算</vh></v>
-<v t="yen.20170108220306.1"><vh>filereader</vh></v>
+<v t="yen.20170108171733.72"><vh>@edit 20170108.md</vh></v>
+<v t="yen.20170219101403.1" a="E"><vh>@clean 20170219.md</vh>
+<v t="yen.20170219101623.1"><vh>ex1 - for 迴圈</vh></v>
+<v t="yen.20170219101610.1"><vh>ex2 - input 與單位換算</vh></v>
+<v t="yen.20170219101553.1"><vh>filereader</vh></v>
 </v>
 <v t="yen.20170108171733.81" a="E"><vh>@path pages</vh>
 <v t="yen.20170108171733.82"><vh>@edit pages_1.md</vh></v>
@@ -348,21 +349,82 @@ make.start()
 &lt;iframe src="https://player.vimeo.com/video/183950627" width="640" height="492" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
 </t>
 <t tx="yen.20170108171733.71"></t>
-<t tx="yen.20170108171733.72">@language md
-Title: 2017Spring 機械設計工程系網際內容管理
-Date: 2017-01-08 11:00
+<t tx="yen.20170108171733.8">@language xml
+@tabwidth -4
+@others
+
+</t>
+<t tx="yen.20170108171733.81"></t>
+<t tx="yen.20170108171733.83">sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt
+
+</t>
+<t tx="yen.20170108171733.9">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+@others
+&lt;/html&gt;
+</t>
+<t tx="yen.20170108171930.1">@language python
+import os
+import subprocess
+import threading
+import http.server, ssl
+
+def domake():
+    # build directory
+    os.chdir("./../")
+    server_address = ('localhost', 5443)
+    httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
+    httpd.socket = ssl.wrap_socket(httpd.socket,
+                                   server_side=True,
+                                   certfile='localhost.crt',
+                                   keyfile='localhost.key',
+                                   ssl_version=ssl.PROTOCOL_TLSv1)
+    print(os.getcwd())
+    print("5443 https server started")
+    httpd.serve_forever()
+
+# 利用執行緒執行 https 伺服器
+make = threading.Thread(target=domake)
+make.start()</t>
+<t tx="yen.20170108171939.1">@language python
+import os
+import subprocess
+import threading
+import socket
+import http.server, ssl
+
+class HTTPServerV6(http.server.HTTPServer):
+    address_family = socket.AF_INET6
+  
+def domake():
+    # build directory
+    os.chdir("./../")
+    ipv6_address = '2001:288:6004:17:3004::808'
+    server_address = (ipv6_address, 6443)
+    #httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
+    httpd = HTTPServerV6(server_address, http.server.SimpleHTTPRequestHandler)
+    httpd.socket = ssl.wrap_socket(httpd.socket,
+                                   server_side=True,
+                                   certfile='localhost.crt',
+                                   keyfile='localhost.key',
+                                   ssl_version=ssl.PROTOCOL_TLSv1)
+    print("6443 https server started")
+    httpd.serve_forever()
+
+# 利用執行緒執行 https 伺服器
+make = threading.Thread(target=domake)
+make.start()</t>
+<t tx="yen.20170219101403.1">@language md
+Title: 網際 Python3 程式環境
+Date: 2017-02-19 11:00
 Category: Course
-Tags: syllabus, w1
-Slug: 2017spring-mde-wcm
+Tags: brython, w1
+Slug: web-based-python3
 Author: yen
 
-2017 Spring 網際內容管理
+網際內容管理課程利用 &lt;a href="https://brython.info/"&gt;Brython&lt;/a&gt; 建立一個能夠直接在瀏覽器中執行的 Python3 程式環境, 讓使用者進行各種與機械產品開發相關的設計運算與動靜態模擬.
 
 &lt;!-- PELICAN_END_SUMMARY --&gt;
-
-&lt;a href="https://chiamingyen.github.io/kmolab/blog/tag/wang-ji-nei-rong-guan-li.html"&gt;2016 Spring 網際內容管理&lt;/a&gt;
-
-&lt;a href="https://wordpress-2015course.rhcloud.com/?cat=2"&gt;2015 Spring 網際內容管理&lt;/a&gt;
 
 &lt;!-- 導入 FileSaver 與 filereader --&gt;
 &lt;script type="text/javascript" src="./../ace/FileSaver.min.js"&gt;&lt;/script&gt;
@@ -386,44 +448,6 @@ brython(1);
 
 &lt;!-- 假如需要用圖型表示數字, 則利用 canvas 繪圖 --&gt;
 &lt;!-- &lt;canvas id="plotarea" width="600" height="400"&gt;&lt;/canvas&gt; --&gt;
-
-2017 WCM 機械設計工程系網際內容管理 (五) 13:20-16:10 各週上課日期:
-
-w1-2/24
-
-w2-3/3
-
-w3-3/10
-
-w4-3/17
-
-w5-3/24
-
-w6-3/31(放假)
-
-w7-4/7
-
-w8-4/14
-
-w9-4/21
-
-w10-4/28
-
-w11-5/5
-
-w12-5/12
-
-w13-5/19
-
-w14-5/26
-
-w15-6/2
-
-w16-6/9
-
-w17-6/16
-
-w18-6/23,
 
 &lt;div id="container1"&gt;&lt;/div&gt;
 &lt;script type="text/python3"&gt;
@@ -585,112 +609,7 @@ doc['clear_console'].bind('click',clear_console)
 &lt;/div&gt;
 &lt;div id="common"&gt;&lt;/div&gt;
 @others</t>
-<t tx="yen.20170108171733.8">@language xml
-@tabwidth -4
-@others
-
-</t>
-<t tx="yen.20170108171733.81"></t>
-<t tx="yen.20170108171733.83">sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt
-
-</t>
-<t tx="yen.20170108171733.9">&lt;!doctype html&gt;
-&lt;html lang="en"&gt;
-@others
-&lt;/html&gt;
-</t>
-<t tx="yen.20170108171930.1">@language python
-import os
-import subprocess
-import threading
-import http.server, ssl
-
-def domake():
-    # build directory
-    os.chdir("./../")
-    server_address = ('localhost', 5443)
-    httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    httpd.socket = ssl.wrap_socket(httpd.socket,
-                                   server_side=True,
-                                   certfile='localhost.crt',
-                                   keyfile='localhost.key',
-                                   ssl_version=ssl.PROTOCOL_TLSv1)
-    print(os.getcwd())
-    print("5443 https server started")
-    httpd.serve_forever()
-
-# 利用執行緒執行 https 伺服器
-make = threading.Thread(target=domake)
-make.start()</t>
-<t tx="yen.20170108171939.1">@language python
-import os
-import subprocess
-import threading
-import socket
-import http.server, ssl
-
-class HTTPServerV6(http.server.HTTPServer):
-    address_family = socket.AF_INET6
-  
-def domake():
-    # build directory
-    os.chdir("./../")
-    ipv6_address = '2001:288:6004:17:3004::808'
-    server_address = (ipv6_address, 6443)
-    #httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    httpd = HTTPServerV6(server_address, http.server.SimpleHTTPRequestHandler)
-    httpd.socket = ssl.wrap_socket(httpd.socket,
-                                   server_side=True,
-                                   certfile='localhost.crt',
-                                   keyfile='localhost.key',
-                                   ssl_version=ssl.PROTOCOL_TLSv1)
-    print("6443 https server started")
-    httpd.serve_forever()
-
-# 利用執行緒執行 https 伺服器
-make = threading.Thread(target=domake)
-make.start()</t>
-<t tx="yen.20170108212459.1">
-&lt;script type="text/python3"&gt;
-from browser import document as doc
-import script1
-
-def ex1(ev):
-    script1.editor.setValue('''#ex1 簡單的 for 迴圈範例
-    for i in range(10):
-        print(i)
-    ''')
-    script1.editor.scrollToRow(0)
-    script1.editor.gotoLine(0)
-doc['ex1'].bind('click',ex1)
-&lt;/script&gt;&lt;a id="ex1"&gt;ex1&lt;/a&gt;-for 迴圈
-</t>
-<t tx="yen.20170108212856.1">
-&lt;script type="text/python3"&gt;
-from browser import document as doc
-import script1
-
-def ex2(ev):
-    script1.editor.setValue('''#溫度轉換程式
-from browser import document as doc
-
-# 因為此函式與滑鼠互動, 需要 event 當作輸入
-def convTemp():
-    mystring = ""
-    cdegree = input("請輸入攝氏溫度:")
-    fdegree = float(cdegree)*9/5 + 32
-    output_string = "攝氏 " + str(cdegree) + "度=華氏 " + str(fdegree) + "度" 
-    # 利用 print() 將轉換結果送到 console 區
-    print(output_string)
-
-#直接呼叫 convTemp() 執行
-convTemp()
-    ''')
-    script1.editor.scrollToRow(0)
-    script1.editor.gotoLine(0)
-doc['ex2'].bind('click',ex2)
-&lt;/script&gt;&lt;a id="ex2"&gt;ex2&lt;/a&gt;-溫度換算</t>
-<t tx="yen.20170108220306.1">
+<t tx="yen.20170219101553.1">
 &lt;script type="text/python3"&gt;
 from browser import document
 import script1
@@ -731,6 +650,46 @@ document["get_ver_and_kw"].bind("click", get_ver_and_kw)
 &lt;/script&gt;
 
 &lt;button id="get"&gt;for1.py&lt;/button&gt;&lt;button id="get_temp1"&gt;temp1.py&lt;/button&gt;&lt;button id="get_ver_and_kw"&gt;ver_and_kw.py&lt;/button&gt;
+</t>
+<t tx="yen.20170219101610.1">
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+import script1
+
+def ex2(ev):
+    script1.editor.setValue('''#溫度轉換程式
+from browser import document as doc
+
+# 因為此函式與滑鼠互動, 需要 event 當作輸入
+def convTemp():
+    mystring = ""
+    cdegree = input("請輸入攝氏溫度:")
+    fdegree = float(cdegree)*9/5 + 32
+    output_string = "攝氏 " + str(cdegree) + "度=華氏 " + str(fdegree) + "度" 
+    # 利用 print() 將轉換結果送到 console 區
+    print(output_string)
+
+#直接呼叫 convTemp() 執行
+convTemp()
+    ''')
+    script1.editor.scrollToRow(0)
+    script1.editor.gotoLine(0)
+doc['ex2'].bind('click',ex2)
+&lt;/script&gt;&lt;a id="ex2"&gt;ex2&lt;/a&gt;-溫度換算</t>
+<t tx="yen.20170219101623.1">
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+import script1
+
+def ex1(ev):
+    script1.editor.setValue('''#ex1 簡單的 for 迴圈範例
+    for i in range(10):
+        print(i)
+    ''')
+    script1.editor.scrollToRow(0)
+    script1.editor.gotoLine(0)
+doc['ex1'].bind('click',ex1)
+&lt;/script&gt;&lt;a id="ex1"&gt;ex1&lt;/a&gt;-for 迴圈
 </t>
 </tnodes>
 </leo_file>
