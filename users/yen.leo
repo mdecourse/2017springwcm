@@ -22,7 +22,7 @@
 <v t="yen.20170108171733.6"><vh>@edit local_publishconf.py</vh></v>
 <v t="yen.20170108171733.7"><vh>@edit pelicanconf.py</vh></v>
 </v>
-<v t="yen.20170108171733.8"><vh>@clean index.html</vh>
+<v t="yen.20170108171733.8" a="E"><vh>@clean index.html</vh>
 <v t="yen.20170108171733.9" a="E"><vh>html</vh>
 <v t="yen.20170108171733.10"><vh>head</vh></v>
 <v t="yen.20170108171733.11" a="E"><vh>body</vh>
@@ -154,7 +154,7 @@ vertical: body pane on the botton</t>
 <t tx="yen.20170108171733.10">&lt;head&gt;
     &lt;meta charset="utf-8"&gt;
 &lt;title&gt;
-2017 Spring 車輛工程系計算機程式
+2017 Spring 機械設計工程系網際內容管理
 &lt;/title&gt;
     &lt;meta name="description" content="A framework for easily creating beautiful presentations using HTML"&gt;
     &lt;meta name="author" content="Hakim El Hattab"&gt;
