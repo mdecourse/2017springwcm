@@ -18,9 +18,14 @@
 <v t="yen.20170108171733.2"><vh>@button pelican-blog</vh></v>
 <v t="yen.20170108171733.3"><vh>@edit README.md</vh></v>
 <v t="yen.20170108171733.4"><vh>@edit .gitignore</vh></v>
-<v t="yen.20170108171733.5" a="E"><vh>Pelican 設定</vh>
+<v t="yen.20170108171733.5"><vh>Pelican 設定</vh>
 <v t="yen.20170108171733.6"><vh>@edit local_publishconf.py</vh></v>
 <v t="yen.20170108171733.7"><vh>@edit pelicanconf.py</vh></v>
+</v>
+<v t="yen.20170224232341.1" a="E"><vh>編輯 template</vh>
+<v t="yen.20170224232341.2" a="E"><vh>@path theme/pelican-bootstrap3_local/templates</vh>
+<v t="yen.20170224232341.3"><vh>@edit base.html</vh></v>
+</v>
 </v>
 <v t="yen.20170108171733.8" a="E"><vh>@clean index.html</vh>
 <v t="yen.20170108171733.9" a="E"><vh>html</vh>
@@ -691,5 +696,7 @@ def ex1(ev):
 doc['ex1'].bind('click',ex1)
 &lt;/script&gt;&lt;a id="ex1"&gt;ex1&lt;/a&gt;-for 迴圈
 </t>
+<t tx="yen.20170224232341.1"></t>
+<t tx="yen.20170224232341.2"></t>
 </tnodes>
 </leo_file>
