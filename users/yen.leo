@@ -22,6 +22,11 @@
 <v t="yen.20170108171733.6"><vh>@edit local_publishconf.py</vh></v>
 <v t="yen.20170108171733.7"><vh>@edit pelicanconf.py</vh></v>
 </v>
+<v t="leo.20170224210855.1" a="E"><vh>編輯 template</vh>
+<v t="leo.20170224210855.2" a="E"><vh>@path theme/pelican-bootstrap3_local/templates</vh>
+<v t="leo.20170224210855.3"><vh>@edit base.html</vh></v>
+</v>
+</v>
 <v t="yen.20170108171733.8" a="E"><vh>@clean index.html</vh>
 <v t="yen.20170108171733.9" a="E"><vh>html</vh>
 <v t="yen.20170108171733.10"><vh>head</vh></v>
@@ -52,11 +57,12 @@
 </v>
 <v t="yen.20170108171733.71" a="E"><vh>@path content</vh>
 <v t="yen.20170108171733.72"><vh>@edit 20170108.md</vh></v>
-<v t="yen.20170219101403.1" a="E"><vh>@clean 20170219.md</vh>
+<v t="yen.20170219101403.1"><vh>@clean 20170219.md</vh>
 <v t="yen.20170219101623.1"><vh>ex1 - for 迴圈</vh></v>
 <v t="yen.20170219101610.1"><vh>ex2 - input 與單位換算</vh></v>
 <v t="yen.20170219101553.1"><vh>filereader</vh></v>
 </v>
+<v t="leo.20170303144114.1"><vh>@edit 20170303.md</vh></v>
 <v t="yen.20170108171733.81" a="E"><vh>@path pages</vh>
 <v t="yen.20170108171733.82"><vh>@edit pages_1.md</vh></v>
 </v>
@@ -67,6 +73,8 @@
 <v t="yen.20170108171939.1"><vh>@button ipv6 https server</vh></v>
 </vnodes>
 <tnodes>
+<t tx="leo.20170224210855.1"></t>
+<t tx="leo.20170224210855.2"></t>
 <t tx="yen.20170108171605.1"></t>
 <t tx="yen.20170108171605.2">QTreeWidget {
     /* These apply to the selected item, but not to editing items.*/
