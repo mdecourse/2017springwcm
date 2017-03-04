@@ -178,10 +178,10 @@
 <p>stunnel.conf</p>
 <p>建立 localhost.key 與 localhost.crt:</p>
 <p>sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt</p>
-<p>/etc/stunnel/stunnel.config 設定檔案:</p>
+<p>/etc/stunnel/stunnel.conf 設定檔案:</p>
 <pre class="brush: jscript">
 [https]
-accesp = yourip:443
+accept = yourip:443
 cert = /etc/stunnel/localhost.crt
 key = /etc/stunnel/localhost.key
 exec = /usr/bin/fossil
