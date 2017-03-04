@@ -63,6 +63,8 @@
 <v t="yen.20170219101553.1"><vh>filereader</vh></v>
 </v>
 <v t="leo.20170303144114.1"><vh>@edit 20170303.md</vh></v>
+<v t="yen.20170304100133.1"><vh>@edit 20170304.md</vh></v>
+<v t="yen.20170304100907.1"><vh>@edit 20170304-1.md</vh></v>
 <v t="yen.20170108171733.81" a="E"><vh>@path pages</vh>
 <v t="yen.20170108171733.82"><vh>@edit pages_1.md</vh></v>
 </v>
@@ -73,8 +75,6 @@
 <v t="yen.20170108171939.1"><vh>@button ipv6 https server</vh></v>
 </vnodes>
 <tnodes>
-<t tx="leo.20170224210855.1"></t>
-<t tx="leo.20170224210855.2"></t>
 <t tx="yen.20170108171605.1"></t>
 <t tx="yen.20170108171605.2">QTreeWidget {
     /* These apply to the selected item, but not to editing items.*/

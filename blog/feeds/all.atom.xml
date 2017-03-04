@@ -1,5 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>2017Spring 網際內容管理 (虎尾科大MDE)</title><link href="./" rel="alternate"></link><link href="./feeds/all.atom.xml" rel="self"></link><id>./</id><updated>2017-03-03T11:00:00+08:00</updated><entry><title>Ubuntu 16.04 環境下安裝 Ethercalc</title><link href="./2017spring-ubuntu-ethercalc.html" rel="alternate"></link><published>2017-03-03T11:00:00+08:00</published><updated>2017-03-03T11:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-03-03:./2017spring-ubuntu-ethercalc.html</id><summary type="html">&lt;p&gt;說明如何在 Ubuntu 16.04 操作系統中安裝 Ethercalc, 並令其開機時啟動.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>2017Spring 網際內容管理 (虎尾科大MDE)</title><link href="./" rel="alternate"></link><link href="./feeds/all.atom.xml" rel="self"></link><id>./</id><updated>2017-03-04T12:00:00+08:00</updated><entry><title>Ubuntu 16.04 環境下啟動 Stunnel 與 Fossil SCM</title><link href="./2017spring-ubuntu-stunnel-fossil.html" rel="alternate"></link><published>2017-03-04T12:00:00+08:00</published><updated>2017-03-04T12:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-03-04:./2017spring-ubuntu-stunnel-fossil.html</id><summary type="html">&lt;p&gt;說明如何在 Ubuntu 操作系統中, 安裝並設定 Stunnel 後與 Fossil SCM server 結合啟動.&lt;/p&gt;
+
+
+&lt;h3&gt;Stunnel 與 Fossil SCM 安裝&lt;/h3&gt;
+&lt;p&gt;sudo apt update&lt;/p&gt;
+&lt;p&gt;sudo apt install stunnel4 -y&lt;/p&gt;
+&lt;p&gt;sudo apt install fossil&lt;/p&gt;
+&lt;h2&gt;環境變數與開機啟動設定&lt;/h2&gt;
+&lt;p&gt;/etc/environment 設定:&lt;/p&gt;
+&lt;p&gt;HTTPS=on&lt;/p&gt;
+&lt;p&gt;/etc/default/stunnel4 檔案設定:&lt;/p&gt;
+&lt;p&gt;ENABLED=1&lt;/p&gt;
+&lt;h2&gt;Stunnel 設定並執行 fossil http 指令&lt;/h2&gt;
+&lt;p&gt;stunnel.conf&lt;/p&gt;
+&lt;p&gt;建立 localhost.key 與 localhost.crt:&lt;/p&gt;
+&lt;p&gt;sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt&lt;/p&gt;
+&lt;p&gt;/etc/stunnel/stunnel.config 設定檔案:&lt;/p&gt;
+&lt;pre class="brush: jscript"&gt;
+[https]
+accesp = yourip:443
+cert = /etc/stunnel/localhost.crt
+key = /etc/stunnel/localhost.key
+exec = /usr/bin/fossil
+execargs = /usr/bin/fossil http /home/user/repository/mde2a1.fossil -- https --nojail
+&lt;/pre&gt;
+
+&lt;p&gt;其中 --nojail 目的在 drop the root privilege but do not enter the chroot jail&lt;/p&gt;
+&lt;p&gt;上述設定完成後, 重新開機即可以 https://yourip 連結至 mde2a1.fossil 網際管理介面.&lt;/p&gt;</summary><category term="Ubuntu"></category><category term="stunnel"></category><category term="fossil"></category></entry><entry><title>Windows 環境下啟動 Stunnel 與 Fossil SCM</title><link href="./2017spring-stunnel-fossil.html" rel="alternate"></link><published>2017-03-04T11:00:00+08:00</published><updated>2017-03-04T11:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-03-04:./2017spring-stunnel-fossil.html</id><summary type="html">&lt;p&gt;說明如何在 Windows 操作系統中, 利用 batch 檔案取得電腦連外 IP, 並且設定 Stunnel 後與 Fossil SCM server 配合啟動.&lt;/p&gt;
+
+
+&lt;p&gt;以下使用 &lt;a href="http://service.mde.tw/public/tiny2017_1GB.7z"&gt;Spring 2017 1GB&lt;/a&gt; 版本的隨身程式系統, 修改 start.bat 如下後, 可以自動取得電腦連外 IPv4 IP 位址, 並將設定資料寫入 stunnel.conf 後啟動.&lt;/p&gt;
+&lt;pre class="brush: jscript"&gt;
+REM tiny2017 主要針對初學 Python3 與 C 學員所建立
+REM 近端使用 fossil 管理資料版本, 並且定時轉為 git 格式後上傳到 github
+@echo off
+REM 設定 y 硬碟代號與 data 目錄對應
+set Disk=y
+subst %Disk%: "data"
+REM 設定 leo 相關對應 Home 位置
+set HomePath=%Disk%:\home
+set HomeDrive=%Disk%:\home
+set Home=%Disk%:\home
+REM 將系統 Python 程式的 io 設為 utf-8
+set PYTHONIOENCODING="utf-8"
+REM 將後續的指令執行, 以 %Disk% 為主
+%Disk%:
+REM 設定 PYTHONPATH
+set PYTHONPATH=%Disk%:\python-3.5.3-embed-amd64
+REM 設定 Leo 所用的編輯器
+set LEO_EDITOR=%Disk%:\wscite\SciTE.exe
+REM for fossil https 連線設定
+set HTTPS=on
+REM 指令搜尋路徑設定
+set path1=%PATH%;%Disk%:;%Disk%:\python-3.5.3-embed-amd64;%Disk%:\git\bin;%Disk%:\stunnel\bin;%Disk%:\sqlite-tools;%Disk%:\python-3.5.3-embed-amd64\Scripts;%Disk%:\portablegit\bin;
+path=%path1%;
+start /MIN %Disk%:\wscite\SciTE.exe
+start /MIN cmd.exe
+start /MIN cmd.exe
+start /MIN cmd.exe
+REM 啟動 Leo 編輯器
+REM %Disk%:\Miniconda3\python.exe %Disk%:\apps\launchLeo.py
+REM 啟動 stunnel
+start /MIN fossil.exe server -P 127.0.0.1:8080 %Disk%:\tmp\fossil_repo
+REM 取得電腦 IP, 然後設定 %Disk%:/stunnel/config/stunnel.conf
+for /f "delims=[] tokens=2" %%a in ('ping -4 -n 1 %ComputerName% ^| findstr [') do set NetworkIP=%%a
+REM echo Network IP: %NetworkIP%
+REM Saved in %Disk%:\stunnel\config\stunnel.conf
+@echo off
+REM 建立 stunnel.conf
+@echo [https] &gt; %Disk%:\stunnel\config\stunnel.conf
+REM 附加資料
+@echo accept = %NetworkIP%:443 &gt;&gt; %Disk%:\stunnel\config\stunnel.conf
+@echo connect = 127.0.0.1:8080 &gt;&gt; %Disk%:\stunnel\config\stunnel.conf
+@echo TIMEOUTclose = 0 &gt;&gt; %Disk%:\stunnel\config\stunnel.conf
+@echo cert = %Disk%:\stunnel\config\localhost.crt &gt;&gt; %Disk%:\stunnel\config\stunnel.conf
+@echo key = %Disk%:\stunnel\config\localhost.key &gt;&gt; %Disk%:\stunnel\config\stunnel.conf
+REM 啟動 stunnel
+start /MIN stunnel.exe
+Exit
+
+&lt;/pre&gt;</summary><category term="Windows"></category><category term="stunnel"></category><category term="fossil"></category></entry><entry><title>Ubuntu 16.04 環境下安裝 Ethercalc</title><link href="./2017spring-ubuntu-ethercalc.html" rel="alternate"></link><published>2017-03-03T11:00:00+08:00</published><updated>2017-03-03T11:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-03-03:./2017spring-ubuntu-ethercalc.html</id><summary type="html">&lt;p&gt;說明如何在 Ubuntu 16.04 操作系統中安裝 Ethercalc, 並令其開機時啟動.&lt;/p&gt;
 
 
 &lt;h2&gt;安裝 node.js 6.x 版&lt;/h2&gt;
@@ -297,7 +377,7 @@ document["get_ver_and_kw"].bind("click", get_ver_and_kw)
 &lt;h2&gt;網際內容管理課程規劃&lt;/h2&gt;
 &lt;p&gt;2017 WCM 機械設計工程系網際內容管理 (五) 13:20-16:10 各週上課日期:&lt;/p&gt;
 &lt;p&gt;&lt;span style="background-color: #ffff00"&gt;w1&lt;/span&gt;-2/24 - 請每人準備一個隨身碟, &lt;span style="background-color: #55ff55"&gt;&lt;a href="http://service.mde.tw/public/tiny2017_1GB.7z"&gt;下載&lt;/a&gt;&lt;/span&gt;可攜程式系統 (1GB). 複習如何在單機環境與網際環境中執行基本的 Python3 程式. &lt;button onClick="lity('https://player.vimeo.com/video/205511160')"&gt;&lt;span class="glyphicon glyphicon-facetime-video"&gt;&lt;/span&gt; W1影片&lt;/button&gt;&lt;/p&gt;
-&lt;p&gt;w2-3/3 - CMSimfly 網際內容管理程式開發&lt;/p&gt;
+&lt;p&gt;w2-3/3 - CMSimfly 網際內容管理程式開發 &lt;button onClick="lity('https://player.vimeo.com/video/206530321')"&gt;&lt;span class="glyphicon glyphicon-facetime-video"&gt;&lt;/span&gt; 啟動 CMSimfly&lt;/button&gt; &lt;button onClick="lity('https://player.vimeo.com/video/206534180')"&gt;&lt;span class="glyphicon glyphicon-facetime-video"&gt;&lt;/span&gt; CMSimfly 基本操作&lt;/button&gt; &lt;button onClick="lity('https://player.vimeo.com/video/206535741')"&gt;&lt;span class="glyphicon glyphicon-facetime-video"&gt;&lt;/span&gt; 手動設定 Stunnel&lt;/button&gt;&lt;/p&gt;
 &lt;p&gt;w3-3/10 - CMSimfly 網際內容管理程式開發&lt;/p&gt;
 &lt;p&gt;w4-3/17 - CMSimfly 網際內容管理程式開發&lt;/p&gt;
 &lt;p&gt;w5-3/24 - CMSimfly 網際內容管理程式開發&lt;/p&gt;
