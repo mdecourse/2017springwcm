@@ -53,7 +53,9 @@ REM for fossil https 連線設定
 set HTTPS=on
 REM 指令搜尋路徑設定
 set path1=%PATH%;%Disk%:;%Disk%:\python-3.5.3-embed-amd64;%Disk%:\git\bin;%Disk%:\stunnel\bin;%Disk%:\sqlite-tools;%Disk%:\python-3.5.3-embed-amd64\Scripts;%Disk%:\portablegit\bin;
-path=%path1%;
+set path2=c:\Windows\Microsoft.NET\Framework\v3.5;%Disk%:\python-3.5.3-embed-amd64\Lib\site-packages;
+set path3="C:\Program Files (x86)\Google\Chrome\Application"
+path=%path%;%path1%;%path2%;%path3%
 start /MIN %Disk%:\wscite\SciTE.exe
 start /MIN cmd.exe
 start /MIN cmd.exe
@@ -61,7 +63,7 @@ start /MIN cmd.exe
 REM 啟動 Leo 編輯器
 REM %Disk%:\Miniconda3\python.exe %Disk%:\apps\launchLeo.py
 REM 啟動 stunnel
-start /MIN fossil.exe server -P 127.0.0.1:8080 %Disk%:\tmp\fossil_repo
+start /MIN fossil.exe server -P 127.0.0.1:8080 %Disk%:\tmp\fossil_repo\vcp.fossil
 REM 取得電腦 IP, 然後設定 %Disk%:/stunnel/config/stunnel.conf
 for /f "delims=[] tokens=2" %%a in ('ping -4 -n 1 %ComputerName% ^| findstr [') do set NetworkIP=%%a
 REM echo Network IP: %NetworkIP%
@@ -77,8 +79,9 @@ REM 附加資料
 @echo key = %Disk%:\stunnel\config\localhost.key &gt;&gt; %Disk%:\stunnel\config\stunnel.conf
 REM 啟動 stunnel
 start /MIN stunnel.exe
+REM 以 chrome 連線到 https://%NetworkIP%:443
+chrome https://%NetworkIP%
 Exit
-
 &lt;/pre&gt;</summary><category term="Windows"></category><category term="stunnel"></category><category term="fossil"></category></entry><entry><title>Ubuntu 16.04 環境下安裝 Ethercalc</title><link href="./2017spring-ubuntu-ethercalc.html" rel="alternate"></link><published>2017-03-03T11:00:00+08:00</published><updated>2017-03-03T11:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-03-03:./2017spring-ubuntu-ethercalc.html</id><summary type="html">&lt;p&gt;說明如何在 Ubuntu 16.04 操作系統中安裝 Ethercalc, 並令其開機時啟動.&lt;/p&gt;
 
 
