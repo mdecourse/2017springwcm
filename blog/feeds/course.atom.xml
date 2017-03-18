@@ -19,7 +19,7 @@
 &lt;pre class="brush: jscript"&gt;
 [https]
 accept = your_IPv4_ip:443
-accetp = :::443
+accept = :::443
 cert = /etc/stunnel/localhost.crt
 key = /etc/stunnel/localhost.key
 exec = /usr/bin/fossil
