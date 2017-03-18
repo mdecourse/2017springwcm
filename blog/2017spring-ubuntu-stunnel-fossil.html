@@ -178,10 +178,11 @@
 <p>stunnel.conf</p>
 <p>建立 localhost.key 與 localhost.crt:</p>
 <p>sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt</p>
-<p>/etc/stunnel/stunnel.conf 設定檔案:</p>
+<p>/etc/stunnel/stunnel.conf 設定檔案, 可同時支援 IPv4 與 IPv6 協定:</p>
 <pre class="brush: jscript">
 [https]
-accept = yourip:443
+accept = your_IPv4_ip:443
+accetp = :::443
 cert = /etc/stunnel/localhost.crt
 key = /etc/stunnel/localhost.key
 exec = /usr/bin/fossil
@@ -189,6 +190,7 @@ execargs = /usr/bin/fossil http /home/user/repository/mde2a1.fossil -- https --n
 </pre>
 
 <p>其中 --nojail 目的在 drop the root privilege but do not enter the chroot jail</p>
+<p>重新啟動 stunnel4 則使用 /etc/init.d/stunnel4 restart</p>
 <p>上述設定完成後, 重新開機即可以 https://yourip 連結至 mde2a1.fossil 網際管理介面.</p>
             </div>
             <!-- /.entry-content -->
