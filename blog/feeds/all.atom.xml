@@ -33,7 +33,7 @@ accept = :::443
 cert = /etc/stunnel/localhost.crt
 key = /etc/stunnel/localhost.key
 exec = /usr/bin/fossil
-execargs = /usr/bin/fossil http /home/user/repository/mde2a1.fossil -- https --nojail
+execargs = /usr/bin/fossil http /home/user/repository/mde2a1.fossil --https --nojail
 &lt;/pre&gt;
 
 &lt;p&gt;其中 --nojail 目的在 drop the root privilege but do not enter the chroot jail&lt;/p&gt;
