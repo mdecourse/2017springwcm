@@ -1,5 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>2017Spring 網際內容管理 (虎尾科大MDE)</title><link href="./" rel="alternate"></link><link href="./feeds/all.atom.xml" rel="self"></link><id>./</id><updated>2017-04-17T12:00:00+08:00</updated><entry><title>期中分組任務</title><link href="./2017spring-wcm-midterm.html" rel="alternate"></link><published>2017-04-17T12:00:00+08:00</published><updated>2017-04-17T12:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-04-17:./2017spring-wcm-midterm.html</id><summary type="html">&lt;p&gt;請在期中考週時段, 以組為單位完成下列指定任務.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>2017Spring 網際內容管理 (虎尾科大MDE)</title><link href="./" rel="alternate"></link><link href="./feeds/all.atom.xml" rel="self"></link><id>./</id><updated>2017-06-18T12:00:00+08:00</updated><entry><title>期末考週</title><link href="./2017spring-wcm-final.html" rel="alternate"></link><published>2017-06-18T12:00:00+08:00</published><updated>2017-06-18T12:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-06-18:./2017spring-wcm-final.html</id><summary type="html">&lt;p&gt;以下為網際內容管理 2017 Spring 第十八週學員連結.&lt;/p&gt;
+
+
+&lt;!-- 導入 Brython 標準程式庫 --&gt;
+
+&lt;script src="./../data/Brython-3.3.1/brython.js"&gt;&lt;/script&gt;
+
+&lt;script src="./../data/Brython-3.3.1/brython_stdlib.js"&gt;&lt;/script&gt;
+
+&lt;!-- 啟動 Brython --&gt;
+
+&lt;script&gt;
+window.onload=function(){
+// 設定 data/py 為共用程式路徑
+brython({debug:1, pythonpath:['./../data/py']});
+}
+&lt;/script&gt;
+
+&lt;p&gt;甲班學員投影片:&lt;/p&gt;
+
+&lt;div id="container1"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document, html
+container1 = document['container1']
+adata = open("./../data/final/1a_list.txt").read()
+alist = adata.splitlines()
+n = 0
+for stud_num in alist:
+    mlink = html.A(stud_num, href="http://s"+str(stud_num)+".github.io/2017springwcm_hw")
+    mlink += " | "
+    n = n +1
+    if n%8 == 0:
+        mlink += html.BR()
+    container1 &lt;= mlink
+&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;
+甲班學員網誌:&lt;/p&gt;
+
+&lt;div id="container2"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document, html
+adata = open("./../data/final/1a_list.txt").read()
+alist = adata.splitlines()
+container2 = document['container2']
+n = 0
+for stud_num in alist:
+    mlink = html.A(stud_num, href="http://s"+str(stud_num)+".github.io/2017springwcm_hw/blog")
+    mlink += " | "
+    n = n +1
+    if n%8 == 0:
+        mlink += html.BR()
+    container2 &lt;= mlink
+&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;
+甲班學員倉儲:&lt;/p&gt;
+
+&lt;div id="container3"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document, html
+adata = open("./../data/final/1a_list.txt").read()
+alist = adata.splitlines()
+container3 = document['container3']
+n = 0
+for stud_num in alist:
+    mlink = html.A(stud_num, href="http://github.com/s"+str(stud_num)+"/2017springwcm_hw")
+    mlink += " | "
+    n = n +1
+    if n%8 == 0:
+        mlink += html.BR()
+    container3 &lt;= mlink
+&lt;/script&gt;</summary><category term="Final"></category></entry><entry><title>期中分組任務</title><link href="./2017spring-wcm-midterm.html" rel="alternate"></link><published>2017-04-17T12:00:00+08:00</published><updated>2017-04-17T12:00:00+08:00</updated><author><name>yen</name></author><id>tag:,2017-04-17:./2017spring-wcm-midterm.html</id><summary type="html">&lt;p&gt;請在期中考週時段, 以組為單位完成下列指定任務.&lt;/p&gt;
 
 
 &lt;h3&gt;建立 Ubuntu 虛擬主機&lt;/h3&gt;
